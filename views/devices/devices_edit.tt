@@ -1,0 +1,40 @@
+<div id='msgs'></div>
+<form id='devices_form' action='/devicess' enctype='multipart/form-data' method=''>
+   <input type='hidden' name='id' value='' />
+   <p class='wrap'>
+      <label for='mac_address' class='blabel'>Mac Address*</label>
+      <input type='text' name='mac_address' value='' maxlength='255' />
+   </p>
+   <p class='wrap'>
+      <label for='hostname' class='label'>Hostname</label>
+      <input type='text' name='hostname' value='' maxlength='255' />
+   </p>
+   <p>
+      <input class='button' type='submit' value='<% IF devices.id %>Update<% ELSE %>Save<% END %>' />
+      &nbsp;<% IF devices.id %>&nbsp;<a href='/devicess/delete/<% devices.id %>'>Delete</a>&nbsp;|<% END %>
+      &nbsp;<a href='/devicess/'>Back to List</a>
+   </p>
+</form>
+<script type='text/javascript'>
+   $(function() {
+      $('#devices_form').ajaxForm({
+         url: '/devicess<% IF devices.id %>/put<% END %>',
+         type: '<% IF devices.id %>PUT<% ELSE %>POST<% END %>',
+         datatype: 'json',
+         beforeSubmit: function() {
+            normalize_labels($('#devices_form'));
+         },
+         //data: $(this).serialize(),
+         success: function(result) {
+            console.log(result);
+            parse_results({
+               result: result,
+               form: 'devices_form',
+               msgdiv: 'msgs',
+               success: function(result) {
+               }
+            });
+         }
+      });
+   });
+</script>

@@ -1,0 +1,10 @@
+
+   <p class='wrap'>
+   <label for='mac_address'>Mac Address</label>
+      <% devices.mac_address %>
+   </p>
+   <p class='wrap'>
+   <label for='hostname'>Hostname</label>
+      <% devices.hostname %>
+   </p>
+      <a href='/devicess/'>Back to List</a>

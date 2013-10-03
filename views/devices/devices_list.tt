@@ -1,0 +1,20 @@
+<% IF devicess.size %>
+    <table>
+      <tr>
+         <th></th>
+         <th>Mac Address</th>
+         <th>Hostname</th>
+</tr>
+    <% FOREACH devices IN devicess %>
+      <tr>
+         <td><a href='/devicess/<% devices.id %>'>View</a> <a href='/devicess/edit/<% devices.id %>'>Edit</a></td>
+         <td><% devices.mac_address %></td>
+            <td><% devices.hostname %></td>
+         </tr>
+    <% END %>
+    </table>
+  <% ELSE %>
+    <p>No results found</p>
+  <% END %>
+   <a class='button' href='/devicess/add/'>Add a Devices</a>
+   &nbsp;&nbsp;<a href='<% dashboard %>'>Dashboard</a>
